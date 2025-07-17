@@ -1,0 +1,43 @@
+name: Start COPR Build
+
+on:
+  schedule:
+    - cron: "15 2 * * *"
+  workflow_dispatch:
+
+jobs:
+  pcsx2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Check if there's new commits"
+        id: check
+        run: |
+          CUR="$(curl -H 'Accept: application/json' 'https://copr.fedorainfracloud.org/api_3/package/?ownername=tellowkrinkle&projectname=pcsx2&packagename=pcsx2-nightly&with_latest_build=true&with_latest_succeeded_build=false' | jq -r .builds.latest.source_package.version | sed 's/-.*//')"
+          NEW="$(curl 'https://api.pcsx2.net/v1/nightlyReleases?pageSize=1' | jq -r .data[0].version | sed s/^v//)"
+          echo "CUR: ${CUR}, NEW: ${NEW}"
+          if [ "$CUR" = "$NEW" ]; then
+            echo "new=false" >> $GITHUB_OUTPUT
+          else
+            echo "new=true" >> $GITHUB_OUTPUT
+          fi
+      - name: Start Build
+        if: steps.check.outputs.new == 'true'
+        run: curl -X POST ${{ secrets.COPR_WEBHOOK }}/pcsx2-nightly
+
+  patches:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Check if there's new commits"
+        id: check
+        run: |
+          CUR="$(curl -H 'Accept: application/json' 'https://copr.fedorainfracloud.org/api_3/package/?ownername=tellowkrinkle&projectname=pcsx2&packagename=pcsx2-patches&with_latest_build=true&with_latest_succeeded_build=false' | jq -r .builds.latest.source_package.version | sed -E 's/0~git[0-9]+\.([0-9a-f]+)-.*/\1/')"
+          NEW="$(curl -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' -H 'Accept: application/vnd.github.VERSION.sha' 'https://api.github.com/repos/PCSX2/pcsx2_patches/commits/main')"
+          echo "CUR: ${CUR}, NEW: ${NEW}"
+          if [ "${CUR:0:7}" = "${NEW:0:7}" ]; then
+            echo "new=false" >> $GITHUB_OUTPUT
+          else
+            echo "new=true" >> $GITHUB_OUTPUT
+          fi
+      - name: Start Build
+        if: steps.check.outputs.new == 'true'
+        run: curl -X POST ${{ secrets.COPR_WEBHOOK }}/pcsx2-patches
