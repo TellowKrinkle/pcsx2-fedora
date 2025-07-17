@@ -10,6 +10,9 @@ URL:            https://github.com/PCSX2/pcsx2
 
 Source0:        %{url}/archive/v%{version}/pcsx2-%{version}.tar.gz
 
+Patch0:         warn-unofficial-build.patch
+Patch1:         allow-version-override.patch
+
 Provides:       pcsx2
 Conflicts:      pcsx2
 
@@ -59,10 +62,11 @@ Recommends:     vulkan
 PCSX2 is a free and open-source PlayStation 2 (PS2) emulator. Its purpose is to emulate the PS2's hardware, using a combination of MIPS CPU Interpreters, Recompilers and a Virtual Machine which manages hardware states and PS2 system memory. This allows you to play PS2 games on your PC, with many additional features and benefits.
 
 %prep
-%autosetup -n pcsx2-%{version}
+%autosetup -p1 -n pcsx2-%{version}
 
 %build
 %cmake \
+	-DPCSX2_GIT_REV_OVERRIDE=%{version}%{dist} \
 	-DCMAKE_BUILD_TYPE=Release \
 	-DUSE_LINKED_FFMPEG=ON \
 	-DPACKAGE_MODE=ON \

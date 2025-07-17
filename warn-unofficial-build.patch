@@ -1,0 +1,36 @@
+--- a/pcsx2-qt/MainWindow.cpp
++++ b/pcsx2-qt/MainWindow.cpp
+@@ -1638,13 +1638,25 @@
+ 	doGameSettings(nullptr);
+ }
+ 
++static void notifyUserOfUnofficialPCSX2(MainWindow* main)
++{
++	QMessageBox mbox(main);
++	mbox.setWindowTitle(main->tr("Unofficial PCSX2 Build"));
++	mbox.setTextFormat(Qt::RichText);
++	mbox.setText(main->tr("Before reporting any bugs, please check if they occur on an <a href=\"https://pcsx2.net/downloads\">official appimage build</a>.  If not, join the PCSX2 discord and DM %1 for support on this build.  Don't bother the devs with issues that don't occur on official builds.").arg(QStringLiteral("TellowKrinkle")));
++	mbox.setIcon(QMessageBox::Warning);
++	mbox.exec();
++}
++
+ void MainWindow::onGitHubRepositoryActionTriggered()
+ {
++	notifyUserOfUnofficialPCSX2(this);
+ 	QtUtils::OpenURL(this, AboutDialog::getGitHubRepositoryUrl());
+ }
+ 
+ void MainWindow::onSupportForumsActionTriggered()
+ {
++	notifyUserOfUnofficialPCSX2(this);
+ 	QtUtils::OpenURL(this, AboutDialog::getSupportForumsUrl());
+ }
+ 
+@@ -1660,6 +1672,7 @@
+ 
+ void MainWindow::onDiscordServerActionTriggered()
+ {
++	notifyUserOfUnofficialPCSX2(this);
+ 	QtUtils::OpenURL(this, AboutDialog::getDiscordServerUrl());
+ }
+ 

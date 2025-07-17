@@ -1,0 +1,12 @@
+--- a/cmake/Pcsx2Utils.cmake
++++ b/cmake/Pcsx2Utils.cmake
+@@ -90,6 +90,9 @@
+ 			set(PCSX2_GIT_REV "Unknown")
+ 		endif()
+ 	endif()
++	if(DEFINED PCSX2_GIT_REV_OVERRIDE)
++		set(PCSX2_GIT_REV "${PCSX2_GIT_REV_OVERRIDE}")
++	endif()
+ 
+ 	set(PCSX2_GIT_REV "${PCSX2_GIT_REV}" PARENT_SCOPE)
+ 	set(PCSX2_GIT_TAG "${PCSX2_GIT_TAG}" PARENT_SCOPE)
