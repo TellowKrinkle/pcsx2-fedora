@@ -2,7 +2,7 @@
 
 Name:           kddockwidgets2
 Version:        2.2.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Qt dock widget library
 
 License:        GPL-3.0-only AND GPL-2.0-only AND BSD-3-Clause
@@ -23,8 +23,6 @@ BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  libxkbcommon-devel
 
-%{?_qt5:Requires:       %{_qt5}%{?_isa} = %{_qt5_version}}
-
 %description
 Qt dock widget library written by KDAB, suitable for replacing QDockWidget
 and implementing advanced functionalities missing in Qt.
@@ -39,8 +37,6 @@ developing applications that use %{name}.
 
 %package        qt6
 Summary:        Qt dock widget library for Qt 6
-
-%{?_qt6:Requires:       %{_qt6}%{?_isa} = %{_qt6_version}}
 
 %description    qt6
 %{description}
