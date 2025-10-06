@@ -1,8 +1,8 @@
-%global sover 2.2
+%global sover 3
 
 Name:           kddockwidgets2
-Version:        2.2.5
-Release:        2%{?dist}
+Version:        2.3.0
+Release:        1%{?dist}
 Summary:        Qt dock widget library
 
 License:        GPL-3.0-only AND GPL-2.0-only AND BSD-3-Clause
@@ -65,7 +65,8 @@ Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 %global _vpath_builddir %{_target_platform}-qt5
 %cmake \
     -G Ninja \
-    -DCMAKE_BUILD_TYPE=Release
+    -DCMAKE_BUILD_TYPE=Release \
+    -DKDDockWidgets_QT6=OFF
 %cmake_build
 
 %global _vpath_builddir %{_target_platform}-qt6
@@ -94,7 +95,8 @@ rm -r %{buildroot}%{_datadir}/doc/KDDockWidgets-qt6
 %files
 %license LICENSES/* LICENSE.txt
 %doc CONTRIBUTORS.txt Changelog README.md
-%{_libdir}/libkddockwidgets.so.%{sover}*
+%{_libdir}/libkddockwidgets.so.%{sover}
+%{_libdir}/libkddockwidgets.so.%{version}
 
 %files devel
 %{_includedir}/kddockwidgets
@@ -105,7 +107,8 @@ rm -r %{buildroot}%{_datadir}/doc/KDDockWidgets-qt6
 %files qt6
 %license LICENSES/* LICENSE.txt
 %doc CONTRIBUTORS.txt Changelog README.md
-%{_libdir}/libkddockwidgets-qt6.so.%{sover}*
+%{_libdir}/libkddockwidgets-qt6.so.%{sover}
+%{_libdir}/libkddockwidgets-qt6.so.%{version}
 
 %files qt6-devel
 %{_includedir}/kddockwidgets-qt6
