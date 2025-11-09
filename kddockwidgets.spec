@@ -1,7 +1,7 @@
 %global sover 3
 
 Name:           kddockwidgets2
-Version:        2.3.0
+Version:        2.4.0
 Release:        1%{?dist}
 Summary:        Qt dock widget library
 
