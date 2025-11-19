@@ -85,7 +85,7 @@ install -Dm644 bin/resources/icons/AppIconLarge.png %{buildroot}%{_datadir}/icon
 
 %files
 %license COPYING.GPLv3 bin/docs/ThirdPartyLicenses.html
-%doc bin/docs/Debugger.pdf bin/docs/debugger.txt bin/docs/GameIndex.pdf
+%doc bin/docs/GameIndex.pdf
 %{_bindir}/pcsx2-qt
 %{_datadir}/PCSX2/resources
 %{_datadir}/PCSX2/translations
