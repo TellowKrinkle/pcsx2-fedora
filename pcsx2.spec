@@ -1,8 +1,8 @@
 %global toolchain clang
 %undefine _cmake_shared_libs
 
-Name:           pcsx2-nightly
-Version:        __VERSION__
+Name:           pcsx2-stable
+Version:        2.8.0
 Release:        %autorelease
 Summary:        PlayStation 2 Emulator
 License:        GPLv3+
