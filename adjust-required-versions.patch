@@ -6,9 +6,9 @@
  if(ENABLE_QT_UI)
 -	find_package(Qt6 6.10.0 COMPONENTS CoreTools Core GuiTools Gui WidgetsTools Widgets LinguistTools REQUIRED)
 +	find_package(Qt6 6.8.0 COMPONENTS CoreTools Core GuiTools Gui WidgetsTools Widgets LinguistTools REQUIRED)
- endif()
  
- if (Qt6_VERSION VERSION_GREATER_EQUAL 6.10.0)
+ 	if (Qt6_VERSION VERSION_GREATER_EQUAL 6.10.0)
+ 		find_package(Qt6 COMPONENTS CorePrivate GuiPrivate WidgetsPrivate REQUIRED)
 --- a/pcsx2-qt/GameList/GameListWidget.cpp
 +++ b/pcsx2-qt/GameList/GameListWidget.cpp
 @@ -64,6 +64,13 @@ static constexpr std::array<int, GameLis
