@@ -52,6 +52,7 @@ BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xi)
 BuildRequires:  pkgconfig(xrandr)
 BuildRequires:  pkgconfig(zlib)
+BuildRequires:  libbacktrace
 BuildRequires:  qt6-qtbase-private-devel
 Requires:       pcsx2-patches
 Requires:       qt6-qtsvg
@@ -73,7 +74,6 @@ PCSX2 is a free and open-source PlayStation 2 (PS2) emulator. Its purpose is to 
 	-DUSE_LINKED_FFMPEG=ON \
 	-DPACKAGE_MODE=ON \
 	-DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON \
-	-DUSE_BACKTRACE=OFF \
 	-DDISABLE_ADVANCE_SIMD=ON
 
 %cmake_build
