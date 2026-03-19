@@ -12,7 +12,6 @@ Source0:        %{url}/archive/v%{version}/pcsx2-%{version}.tar.gz
 
 Patch0:         warn-unofficial-build.patch
 Patch1:         allow-version-override.patch
-Patch2:         adjust-required-versions.patch
 
 Provides:       pcsx2
 Conflicts:      pcsx2
