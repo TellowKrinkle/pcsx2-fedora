@@ -28,6 +28,7 @@ BuildRequires:  cmake(Qt6Widgets)        >= 6.7.3
 BuildRequires:  cmake(Qt6WidgetsTools)   >= 6.7.3
 BuildRequires:  cmake(Qt6LinguistTools)  >= 6.7.3
 BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(ryml)
 BuildRequires:  cmake(SDL3)              >= 3.2.6
 BuildRequires:  cmake(WebP)              >= 1.3.2
 BuildRequires:  pkgconfig(dbus-1)
