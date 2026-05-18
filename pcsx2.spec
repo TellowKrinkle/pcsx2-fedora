@@ -2,7 +2,7 @@
 %undefine _cmake_shared_libs
 
 Name:           pcsx2-stable
-Version:        2.6.2
+Version:        2.6.3
 Release:        %autorelease
 Summary:        PlayStation 2 Emulator
 License:        GPLv3+
