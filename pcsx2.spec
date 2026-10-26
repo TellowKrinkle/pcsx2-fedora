@@ -2,7 +2,7 @@
 %undefine _cmake_shared_libs
 
 Name:           pcsx2-stable
-Version:        2.8.0
+Version:        2.8.1
 Release:        %autorelease
 Summary:        PlayStation 2 Emulator
 License:        GPLv3+
@@ -13,6 +13,7 @@ Source0:        %{url}/archive/v%{version}/pcsx2-%{version}.tar.gz
 Patch0:         warn-unofficial-build.patch
 Patch1:         allow-version-override.patch
 Patch2:         ryml-workaround.patch
+Patch3:         ffmpeg-fix.patch
 
 Provides:       pcsx2
 Conflicts:      pcsx2
